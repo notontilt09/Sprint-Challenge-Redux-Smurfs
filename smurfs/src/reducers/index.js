@@ -36,6 +36,24 @@ import {
 const smurf = (state = initialState, action) => {
   console.log(action);
   switch(action.type) {
+    case FETCH_SMURFS_START:
+      return {
+        ...state,
+        fetchingSmurfs: true
+      }
+    case FETCH_SMURFS_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload,
+        fetchingSmurfs: false
+      }
+    case FETCH_SMURFS_FAIL:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        error: action.payload
+
+      }
     default:
       return state
   }
