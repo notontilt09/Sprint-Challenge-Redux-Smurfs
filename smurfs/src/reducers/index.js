@@ -11,7 +11,10 @@ import {
   FETCH_SMURFS_FAIL,
   ADD_SMURFS_START,
   ADD_SMURFS_SUCCESS,
-  ADD_SMURFS_FAIL
+  ADD_SMURFS_FAIL,
+  DELETE_SMURFS_START,
+  DELETE_SMURFS_SUCCESS,
+  DELETE_SMURFS_FAIL
 } from '../actions'
  
  const initialState =  {
@@ -68,6 +71,23 @@ const smurf = (state = initialState, action) => {
       return {
         ...state,
         addingSmurf: false,
+        error: action.payload
+      }
+    case DELETE_SMURFS_START:
+      return {
+        ...state,
+        deletingSmurf: true
+      }
+    case DELETE_SMURFS_SUCCESS:
+      return {
+        ...state,
+        deletingSmurf: false,
+        smurfs: action.payload
+      }
+    case DELETE_SMURFS_FAIL:
+      return {
+        ...state,
+        deletingSmurf: false,
         error: action.payload
       }
     default:
