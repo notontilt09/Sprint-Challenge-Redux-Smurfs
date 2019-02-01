@@ -28,7 +28,7 @@ class AddSmurfForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className='form' onSubmit={this.handleSubmit}>
                 <input
                     type='text' 
                     required 
