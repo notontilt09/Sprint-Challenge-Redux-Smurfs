@@ -58,6 +58,18 @@ const smurf = (state = initialState, action) => {
         ...state,
         addingSmurf: true
       }
+    case ADD_SMURFS_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload,
+        addingSmurf: false
+      }
+    case ADD_SMURFS_FAIL: 
+      return {
+        ...state,
+        addingSmurf: false,
+        error: action.payload
+      }
     default:
       return state
   }
