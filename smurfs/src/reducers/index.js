@@ -52,7 +52,11 @@ const smurf = (state = initialState, action) => {
         ...state,
         fetchingSmurfs: false,
         error: action.payload
-
+      }
+    case ADD_SMURFS_START:
+      return {
+        ...state,
+        addingSmurf: true
       }
     default:
       return state
