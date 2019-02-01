@@ -37,7 +37,6 @@ import {
 */
 
 const smurf = (state = initialState, action) => {
-  console.log(action);
   switch(action.type) {
     case FETCH_SMURFS_START:
       return {

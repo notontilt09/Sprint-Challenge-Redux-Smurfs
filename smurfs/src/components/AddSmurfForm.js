@@ -3,26 +3,32 @@ import { connect } from 'react-redux'
 
 import { addSmurf } from '../actions'
 
+const emptySmurf = {
+    name: '',
+    age: '',
+    height: ''
+}
+
 class AddSmurfForm extends React.Component {
     state = {
-        name: '',
-        age: '',
-        height: ''
+        newSmurf: emptySmurf,
+        updatingSmurf: this.props.updatingSmurf
     }
 
     handleChanges = e => {
         this.setState({
-            [e.target.name] : e.target.value
+            newSmurf: {
+                ...this.state.newSmurf,
+                [e.target.name] : e.target.value
+            } 
         })
     }
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.addSmurf(this.state)
+        this.props.addSmurf(this.state.newSmurf);
         this.setState({
-            name: '',
-            age: '',
-            height: ''
+            newSmurf: emptySmurf
         })
     }
 
@@ -33,7 +39,7 @@ class AddSmurfForm extends React.Component {
                     type='text' 
                     required 
                     name='name' 
-                    value={this.state.name} 
+                    value={this.state.newSmurf.name} 
                     onChange={this.handleChanges}
                     placeholder='name'
                 />
@@ -41,7 +47,7 @@ class AddSmurfForm extends React.Component {
                     type='number'
                     required 
                     name='age' 
-                    value={this.state.age} 
+                    value={this.state.newSmurf.age} 
                     onChange={this.handleChanges}
                     placeholder='age'
                 />
@@ -49,7 +55,7 @@ class AddSmurfForm extends React.Component {
                     type='text'
                     required 
                     name='height' 
-                    value={this.state.height} 
+                    value={this.state.newSmurf.height} 
                     onChange={this.handleChanges}
                     placeholder='height'
                 />
@@ -60,7 +66,7 @@ class AddSmurfForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    addingFriend : state.addingFriend
+    updatingSmurf: state.updatingSmurf
 })
 
 export default connect(mapStateToProps, { addSmurf })(AddSmurfForm)
