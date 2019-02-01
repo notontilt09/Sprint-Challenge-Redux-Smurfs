@@ -1,6 +1,8 @@
-1.  Name 3 JavaScript Array/Object Methods that do not produce side-effects? Which method do we use to create a new object while extending the properties of another object?
-1.  Describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
-1.  What is the difference between Application state and Component state? When would be a good time to use one over the other?
-1.  What is middleware?
-1.  Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
-1.  Which `react-redux` method links up our `components` with our `redux store`?
+## 1. In your own words, describe actions, reducers and the store and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+ Actions are objects with two properties, type and payload.  The type describes the action occuring, and the payload is usually the resulting data from that action happening.  Reducers take in the current state and an action, and update the state of the store in some way.  The store simply holds the global state of the application at all times and is immutable.  It is known as the single source of truth as it is the one place where all of the current state of the app lives, with components only pulling those pieces of state that they need for their trees.
+ 
+## 2. What is the difference between Application state and Component state? When would be a good time to use one over the other?
+ Application state is the global state of the application.  In Redux, the store holds the application state.  Component state is state the lives within a component itself.  For a large scale application with tons of data, it's best to use application state to avoid having to pass too much state down on props along various component trees.  With smaller applications, or for component specific actions such as handling a form input, component state makes more sense to use.
+
+## 3. Describe redux-thunk, what does it allow us to do? How does it change our action-creators?
+ Redux-thunk is Redux middleware that allows us to make our action creators asynchronous, thus disrupting the naturally synchronous flow between action creators, actions, and reducers.  This allows us to make async actions such as API calls in our action creators, and get the data we need back before the action hits the reducer stack.
