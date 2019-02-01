@@ -5,6 +5,14 @@
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
  */
+import {
+  FETCH_SMURFS_START,
+  FETCH_SMURFS_SUCCESS,
+  FETCH_SMURFS_FAIL,
+  ADD_SMURFS_START,
+  ADD_SMURFS_SUCCESS,
+  ADD_SMURFS_FAIL
+} from '../actions'
  
  const initialState =  {
   smurfs: [],
