@@ -14,7 +14,9 @@ class SmurfsList extends React.Component {
 
     deleteSmurf = (e, id) => {
         e.preventDefault();
-        this.props.deleteSmurf(id)
+        if(window.confirm(`Are you sure you wish to delete this smurf?`)) {
+            this.props.deleteSmurf(id)
+        }
     }
 
     populateForm = (e, smurf) => {
