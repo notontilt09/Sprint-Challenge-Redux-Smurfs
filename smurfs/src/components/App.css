@@ -32,3 +32,21 @@
 .smurf button {
   margin-bottom: 10px;
 }
+
+.delete-flash {
+  background: salmon;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.added-flash {
+  background: lightgreen;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.updated-flash {
+  background: lightblue;
+  text-align: center;
+  margin-bottom: 30px;
+}

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 import SmurfsList from './SmurfsList'
 import AddSmurfForm from './AddSmurfForm'
+import { clearFlash } from '../actions'
 
 import './App.css';
 /*
@@ -15,6 +17,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className='title'>Smurfs Redux App</h1>
+        {this.props.deleted && <div onClick={this.props.clearFlash} className='delete-flash'>Smurf Deleted!</div>}
+        {this.props.added && <div onClick={this.props.clearFlash} className='added-flash'>Smurf Added!</div>}
+        {this.props.updated && <div onClick={this.props.clearFlash} className='updated-flash'>Smurf Updated!</div>}
         <div className="page">
           <AddSmurfForm /> 
           <SmurfsList />   
@@ -25,4 +30,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  deleted: state.deleted,
+  added: state.added,
+  updated: state.updated
+})
+
+export default connect(mapStateToProps, { clearFlash })(App);

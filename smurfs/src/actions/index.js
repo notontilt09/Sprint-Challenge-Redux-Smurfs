@@ -18,6 +18,7 @@ export const UPDATE_SMURFS_SUCCESS = 'UPDATE_SMURFS_SUCCESS'
 export const UPDATE_SMURFS_FAIL = 'UPDATE_SMURFS_FAIL'
 export const POPULATE_FORM = 'POPULATE_FORM'
 export const HANDLE_INPUT_CHANGE = 'HANDLE_INPUT_CHANGE'
+export const CLEAR_FLASH = 'CLEAR_FLASH'
 
 
 /*
@@ -65,4 +66,8 @@ export const populateForm = smurf => {
 
 export const handleChange = e => {
   return { type: HANDLE_INPUT_CHANGE, payload: e }
+}
+
+export const clearFlash = () => {
+  return { type: CLEAR_FLASH }
 }
