@@ -14,7 +14,12 @@ import {
   ADD_SMURFS_FAIL,
   DELETE_SMURFS_START,
   DELETE_SMURFS_SUCCESS,
-  DELETE_SMURFS_FAIL
+  DELETE_SMURFS_FAIL,
+  UPDATE_SMURFS_START,
+  UPDATE_SMURFS_SUCCESS,
+  UPDATE_SMURFS_FAIL,
+  POPULATE_FORM,
+  HANDLE_INPUT_CHANGE
 } from '../actions'
  
  const initialState =  {
@@ -23,7 +28,11 @@ import {
   addingSmurf: false,
   updatingSmurf: false,
   deletingSmurf: false,
-  error: ''
+  error: '',
+  name: '',
+  age: '',
+  height: '',
+  updatingId: ''
 }
 
 
@@ -64,7 +73,10 @@ const smurf = (state = initialState, action) => {
       return {
         ...state,
         smurfs: action.payload,
-        addingSmurf: false
+        addingSmurf: false,
+        name: '',
+        age: '',
+        height: ''
       }
     case ADD_SMURFS_FAIL: 
       return {
@@ -89,6 +101,40 @@ const smurf = (state = initialState, action) => {
         deletingSmurf: false,
         error: action.payload
       }
+    case UPDATE_SMURFS_START:
+      return {
+        ...state,
+        updatingSmurf: true
+      }
+    case UPDATE_SMURFS_SUCCESS:
+      return {
+        ...state,
+        updatingSmurf: false,
+        smurfs: action.payload,
+        name: '',
+        age: '',
+        height: ''
+      }
+    case UPDATE_SMURFS_FAIL:
+      return {
+        ...state,
+        updatingSmurf: false,
+        error: action.payload
+      }
+    case POPULATE_FORM:
+      return {
+        ...state,
+        name: action.payload.name ,
+        age: action.payload.age,
+        height: action.payload.height, 
+        updatingSmurf: true,
+        updatingId: action.payload.id
+      }
+    case HANDLE_INPUT_CHANGE:
+      return {
+        ...state,
+        [action.payload.target.name]: action.payload.target.value
+      };
     default:
       return state
   }
