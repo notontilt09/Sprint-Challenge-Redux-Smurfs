@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
+import SmurfsList from './SmurfsList'
+import AddSmurfForm from './AddSmurfForm'
+import { clearFlash } from '../actions'
+
 import './App.css';
 /*
  to wire this component up you're going to need a few things.
@@ -10,13 +16,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+        <h1 className='title'>Smurfs Redux App</h1>
+        {this.props.deleted && <div onClick={this.props.clearFlash} className='delete-flash'>Smurf Deleted!</div>}
+        {this.props.added && <div onClick={this.props.clearFlash} className='added-flash'>Smurf Added!</div>}
+        {this.props.updated && <div onClick={this.props.clearFlash} className='updated-flash'>Smurf Updated!</div>}
+        <div className="page">
+          <AddSmurfForm /> 
+          <SmurfsList />   
+        </div>
+
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  deleted: state.deleted,
+  added: state.added,
+  updated: state.updated
+})
+
+export default connect(mapStateToProps, { clearFlash })(App);
